@@ -7,7 +7,7 @@ export const env = createEnv({
     TELEGRAM_BOT_TOKEN: z.string().min(1),
     TELEGRAM_WEBHOOK_URL: z.string().url().optional(),
     NODE_ENV: z.enum(["development", "production", "test"]).default("development"),
-    DATABASE_URL: z.string().min(1),
+    OPENAI_API_KEY: z.string().min(1),
   },
   runtimeEnv: process.env,
   emptyStringAsUndefined: true,
