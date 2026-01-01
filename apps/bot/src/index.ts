@@ -1,13 +1,13 @@
 import { env } from "@nettrai-blogger/env/bot";
 import bot from "./bot";
-import { setupCommands } from "./bot/commands";
-import { setupMiddleware } from "./bot/middleware";
+import { setupCommands } from "./commands";
+import { setupMiddleware } from "./middlewares";
 
 setupCommands(bot);
 setupMiddleware(bot);
 
 if (env.NODE_ENV === "production") {
-  import("./server/index.js").then(({ default: app }) => {
+  import("./server.js").then(({ default: app }) => {
     const server = Bun.serve({
       port: parseInt(process.env.PORT || "3002"),
       fetch: app.fetch,

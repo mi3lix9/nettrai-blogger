@@ -1,6 +1,6 @@
 import { Hono } from "hono";
 import { webhookCallback } from "grammy";
-import bot from "../bot";
+import bot from "./bot";
 
 const app = new Hono();
 

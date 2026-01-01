@@ -51,11 +51,13 @@ DATABASE_URL=your_database_url
 
 ```
 src/
-├── bot/           # Bot logic and handlers
-│   ├── index.ts    # Bot setup and command handlers
-│   ├── commands/   # Command handlers
-│   └── middleware/ # Bot middleware
-├── server/         # Hono server for webhooks (production)
-├── orpc/          # oRPC client for API communication
-└── index.ts       # Entry point
+├── index.ts        # Entry point (dev/prod switching)
+├── server.ts       # Hono server for webhooks (production)
+├── bot.ts          # Bot setup and command handlers
+├── commands/       # Command handlers
+│   └── index.ts
+├── middlewares/    # Bot middleware
+│   └── index.ts
+└── orpc/          # oRPC client for API communication
+    └── client.ts
 ```
