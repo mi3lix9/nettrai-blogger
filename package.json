@@ -27,6 +27,7 @@
     "dev:native": "turbo -F native dev",
     "dev:web": "turbo -F web dev",
     "dev:server": "turbo -F server dev",
+    "dev:bot": "turbo -F bot dev",
     "db:push": "turbo -F @nettrai-blogger/db db:push",
     "db:studio": "turbo -F @nettrai-blogger/db db:studio",
     "db:generate": "turbo -F @nettrai-blogger/db db:generate",

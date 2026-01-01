@@ -1,0 +1,29 @@
+{
+  "name": "bot",
+  "type": "module",
+  "main": "src/index.ts",
+  "scripts": {
+    "build": "tsdown",
+    "check-types": "tsc -b",
+    "compile": "bun build --compile --minify --sourcemap --bytecode ./src/index.ts --outfile bot",
+    "dev": "bun run --hot src/index.ts",
+    "start": "bun run dist/index.js"
+  },
+  "dependencies": {
+    "grammy": "^1.39.2",
+    "hono": "catalog:",
+    "dotenv": "catalog:",
+    "zod": "catalog:",
+    "@nettrai-blogger/env": "workspace:*",
+    "@nettrai-blogger/api": "workspace:*",
+    "@orpc/client": "catalog:",
+    "@orpc/server": "catalog:",
+    "@nettrai-blogger/db": "workspace:*"
+  },
+  "devDependencies": {
+    "@types/bun": "catalog:",
+    "typescript": "^5",
+    "tsdown": "^0.16.5",
+    "@nettrai-blogger/config": "workspace:*"
+  }
+}
