@@ -16,6 +16,7 @@
     "@nettrai-blogger/api": "workspace:*",
     "@nettrai-blogger/db": "workspace:*",
     "@nettrai-blogger/env": "workspace:*",
+    "mastra": "workspace:*",
     "@orpc/client": "catalog:",
     "@orpc/server": "catalog:",
     "ai": "^6.0.5",
