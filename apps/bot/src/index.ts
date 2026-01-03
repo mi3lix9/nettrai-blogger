@@ -13,7 +13,7 @@ if (env.NODE_ENV === "production") {
       fetch: app.fetch,
     });
     console.log(`Bot webhook server running on port ${server.port}`);
-    
+
     if (env.TELEGRAM_WEBHOOK_URL) {
       bot.api.setWebhook(env.TELEGRAM_WEBHOOK_URL);
     }

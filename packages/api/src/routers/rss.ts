@@ -72,7 +72,7 @@ export const rssRouter = {
     .input(
       z.object({
         feedUrls: z.array(z.string().url()).optional().default(RSS_FEEDS),
-      })
+      }),
     )
     .output(
       z.object({
@@ -87,16 +87,14 @@ export const rssRouter = {
                 link: z.string(),
                 score: z.number(),
                 strengths: z.array(z.string()),
-              })
+              }),
             ),
-          })
+          }),
         ),
-      })
+      }),
     )
     .handler(async ({ input }) => {
-      const results = await Promise.all(
-        input.feedUrls.map((url) => checkFeed(url))
-      );
+      const results = await Promise.all(input.feedUrls.map((url) => checkFeed(url)));
 
       return { results };
     }),
@@ -105,7 +103,7 @@ export const rssRouter = {
     .input(
       z.object({
         url: z.string().url(),
-      })
+      }),
     )
     .output(
       z.object({
@@ -115,7 +113,7 @@ export const rssRouter = {
           strengths: z.array(z.string()),
           weaknesses: z.array(z.string()),
         }),
-      })
+      }),
     )
     .handler(async ({ input }) => {
       const feed = await parser.parseURL(input.url);

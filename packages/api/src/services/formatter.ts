@@ -36,10 +36,7 @@ const SECTION_ORDER: SectionConfig[] = [
 ];
 
 function escapeHTML(str: string = ""): string {
-  return String(str)
-    .replace(/&/g, "&amp;")
-    .replace(/</g, "&lt;")
-    .replace(/>/g, "&gt;");
+  return String(str).replace(/&/g, "&amp;").replace(/</g, "&lt;").replace(/>/g, "&gt;");
 }
 
 function renderHeader(label: string): string {
@@ -59,7 +56,7 @@ function visibleOrSpoiler(text: string, forceVisible = false): string {
 
 function renderSingle(
   obj: { emoji?: string; text?: string } | undefined,
-  { forceVisible = false } = {}
+  { forceVisible = false } = {},
 ): string {
   if (!obj || typeof obj !== "object") return "";
   const emoji = obj.emoji ? `${escapeHTML(obj.emoji)} ` : "";
@@ -70,7 +67,7 @@ function renderSingle(
 
 function renderArray(
   arr: Array<{ emoji?: string; text?: string }> | undefined,
-  { forceVisible = false } = {}
+  { forceVisible = false } = {},
 ): string {
   if (!Array.isArray(arr)) return "";
   const lines = arr
@@ -112,7 +109,10 @@ export function formatArticle(article: ArticleContent, sourceUrl: string): strin
 
   out.push(`<a href="${escapeHTML(sourceUrl)}">المصدر</a>`);
 
-  const text = out.join("\n").replace(/\n{3,}/g, "\n\n").trim();
+  const text = out
+    .join("\n")
+    .replace(/\n{3,}/g, "\n\n")
+    .trim();
 
   return text;
 }

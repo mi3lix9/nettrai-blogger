@@ -6,7 +6,7 @@ import type { BotContext } from "./context";
 import { streamText } from "ai";
 import { openai } from "@ai-sdk/openai";
 import { stream } from "@grammyjs/stream";
-
+import { mastra } from "@nettrai-blogger/mastra";
 export const bot = new Bot<BotContext>(env.TELEGRAM_BOT_TOKEN);
 
 bot.api.config.use(autoRetry());
@@ -15,20 +15,24 @@ bot.use(stream());
 bot.command("start", async (ctx) => {
   await ctx.reply(
     "مرحباً! أرسل لي رابط مقال تقني وسأقوم بتحويله إلى خبر بالعربية.\n\n" +
-    "Send me a tech article URL and I'll convert it to Arabic news."
+      "Send me a tech article URL and I'll convert it to Arabic news.",
   );
 });
 
 bot.on("message:text", async (ctx) => {
   const message = ctx.message.text;
 
-  const {textStream} = streamText({
-    model: openai("gpt-4o-mini"),
-    messages: [{ role: "user", content: message }],
-  })
+  // const {textStream} = streamText({
+  //   model: openai("gpt-4o-mini"),
+  //   messages: [{ role: "user", content: message }],
+  // })
 
-  await ctx.replyWithStream(textStream)
-})
+  const { textStream } = await mastra
+    .getAgent("chatAgent")
+    .stream([{ role: "user", content: message }]);
+
+  await ctx.replyWithStream(textStream);
+});
 
 bot.on("::text_link", async (ctx) => {
   const url = ctx.message?.text;
@@ -48,14 +52,10 @@ bot.on("::text_link", async (ctx) => {
     await ctx.reply(result.content, {
       parse_mode: "HTML",
     });
-
   } catch (error) {
     await ctx.api.deleteMessage(ctx.chat.id, statusMsg.message_id);
     console.error("Error processing URL:", error);
-    await ctx.reply(
-      "❌ حدث خطأ أثناء المعالجة\n" +
-      "Error processing the URL. Please try again."
-    );
+    await ctx.reply("❌ حدث خطأ أثناء المعالجة\n" + "Error processing the URL. Please try again.");
   }
 });
 

@@ -1,6 +1,11 @@
 import { createOpenAI } from "@ai-sdk/openai";
 import { generateObject } from "ai";
-import { articleSchema, plannerSchema, type PlannerOutput, type ArticleContent } from "../lib/schemas";
+import {
+  articleSchema,
+  plannerSchema,
+  type PlannerOutput,
+  type ArticleContent,
+} from "../lib/schemas";
 import { env } from "@nettrai-blogger/env/server";
 
 const openai = createOpenAI({
@@ -70,14 +75,12 @@ export async function planSections(markdown: string): Promise<PlannerOutput> {
 
 export async function generateArticle(
   markdown: string,
-  allowedSections: string[]
+  allowedSections: string[],
 ): Promise<ArticleContent> {
   const dynamicSchema = articleSchema.pick({
     headline: true,
     follow_up_question: true,
-    ...Object.fromEntries(
-      allowedSections.map((section) => [section, true])
-    ),
+    ...Object.fromEntries(allowedSections.map((section) => [section, true])),
   } as any);
 
   const result = await generateObject({

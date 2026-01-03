@@ -16,21 +16,21 @@
     "@nettrai-blogger/api": "workspace:*",
     "@nettrai-blogger/db": "workspace:*",
     "@nettrai-blogger/env": "workspace:*",
-    "mastra": "workspace:*",
+    "@nettrai-blogger/mastra": "workspace:*",
     "@orpc/client": "catalog:",
     "@orpc/server": "catalog:",
     "ai": "^6.0.5",
+    "cheerio": "^1.0.0",
     "dotenv": "catalog:",
     "grammy": "^1.39.2",
     "hono": "catalog:",
-    "zod": "catalog:",
-    "cheerio": "^1.0.0",
-    "turndown": "^7.2.0"
+    "turndown": "^7.2.0",
+    "zod": "catalog:"
   },
   "devDependencies": {
+    "@nettrai-blogger/config": "workspace:*",
     "@types/bun": "catalog:",
-    "typescript": "^5",
     "tsdown": "^0.16.5",
-    "@nettrai-blogger/config": "workspace:*"
+    "typescript": "^5"
   }
 }

@@ -24,10 +24,7 @@ export async function processUrl(url: string): Promise<ProcessResult> {
   console.log(`📋 Sections planned: ${plan.allowed_sections.join(", ")}`);
 
   console.log("✍️  Generating article...");
-  const article = await generateArticle(
-    crawlResult.markdown,
-    plan.allowed_sections
-  );
+  const article = await generateArticle(crawlResult.markdown, plan.allowed_sections);
   console.log("✅ Article generated");
 
   console.log("🎨 Formatting for Telegram...");

@@ -30,7 +30,8 @@ export async function crawlUrl(url: string): Promise<CrawlResult> {
     title: $("title").text() || $('meta[property="og:title"]').attr("content") || undefined,
     description:
       $('meta[name="description"]').attr("content") ||
-      $('meta[property="og:description"]').attr("content") || undefined,
+      $('meta[property="og:description"]').attr("content") ||
+      undefined,
     "og:image": $('meta[property="og:image"]').attr("content") || undefined,
     "og:title": $('meta[property="og:title"]').attr("content") || undefined,
     "og:description": $('meta[property="og:description"]').attr("content") || undefined,

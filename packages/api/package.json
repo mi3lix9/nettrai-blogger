@@ -11,25 +11,25 @@
   },
   "scripts": {},
   "dependencies": {
-    "@orpc/server": "catalog:",
+    "@ai-sdk/openai": "^3.0.2",
+    "@nettrai-blogger/auth": "workspace:*",
+    "@nettrai-blogger/db": "workspace:*",
+    "@nettrai-blogger/env": "workspace:*",
     "@orpc/client": "catalog:",
     "@orpc/openapi": "catalog:",
+    "@orpc/server": "catalog:",
     "@orpc/zod": "catalog:",
-    "hono": "catalog:",
-    "dotenv": "catalog:",
-    "zod": "catalog:",
-    "@ai-sdk/openai": "^3.0.2",
     "ai": "^6.0.5",
     "cheerio": "^1.0.0",
-    "turndown": "^7.2.0",
+    "dotenv": "catalog:",
+    "hono": "catalog:",
     "rss-parser": "^3.13.0",
-    "@nettrai-blogger/env": "workspace:*",
-    "@nettrai-blogger/auth": "workspace:*",
-    "@nettrai-blogger/db": "workspace:*"
+    "turndown": "^7.2.0",
+    "zod": "catalog:"
   },
   "devDependencies": {
-    "typescript": "^5",
     "@nettrai-blogger/config": "workspace:*",
-    "@types/turndown": "^5.0.5"
+    "@types/turndown": "^5.0.5",
+    "typescript": "^5"
   }
 }

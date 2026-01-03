@@ -8,7 +8,7 @@ export const articleRouter = {
     .input(
       z.object({
         url: z.string().url(),
-      })
+      }),
     )
     .output(
       z.object({
@@ -20,7 +20,7 @@ export const articleRouter = {
           "og:title": z.string().optional(),
           "og:description": z.string().optional(),
         }),
-      })
+      }),
     )
     .handler(async ({ input }) => {
       const result = await processUrl(input.url);

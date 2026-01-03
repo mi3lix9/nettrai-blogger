@@ -18,19 +18,10 @@ export interface RSSFeedItem {
 }
 
 const evaluationSchema = z.object({
-  total_score: z
-    .number()
-    .int()
-    .min(0)
-    .max(12)
-    .describe("Sum of all criterion scores (0–12)"),
+  total_score: z.number().int().min(0).max(12).describe("Sum of all criterion scores (0–12)"),
   reasoning: z.object({
-    strengths: z
-      .array(z.string().min(1))
-      .describe("Reasons it scored well"),
-    weaknesses: z
-      .array(z.string().min(1))
-      .describe("Reasons it scored poorly"),
+    strengths: z.array(z.string().min(1)).describe("Reasons it scored well"),
+    weaknesses: z.array(z.string().min(1)).describe("Reasons it scored poorly"),
   }),
 });
 
@@ -107,9 +98,7 @@ Weaknesses: What holds it back.
 
 Be specific — reference factors like credibility, novelty, readability, or audience fit.`;
 
-export async function analyzeContent(
-  item: RSSFeedItem
-): Promise<EvaluationResult> {
+export async function analyzeContent(item: RSSFeedItem): Promise<EvaluationResult> {
   const content = `${item.title}\n\n${item.content || item.contentSnippet}\n\n${item.categories?.join(", ") || ""}`;
 
   const result = await generateObject({

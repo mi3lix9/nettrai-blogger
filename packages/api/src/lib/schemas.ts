@@ -11,7 +11,7 @@ export const sectionsSchema = z.object({
       z.object({
         emoji: z.string(),
         text: z.string().min(20).max(80),
-      })
+      }),
     )
     .min(1)
     .max(3)
@@ -22,7 +22,7 @@ export const sectionsSchema = z.object({
       z.object({
         emoji: z.string(),
         text: z.string().min(20).max(80),
-      })
+      }),
     )
     .min(2)
     .max(10)
@@ -47,7 +47,7 @@ export const sectionsSchema = z.object({
       z.object({
         emoji: z.string(),
         text: z.string().min(20).max(80),
-      })
+      }),
     )
     .min(2)
     .max(10)
@@ -89,10 +89,12 @@ export const sectionsSchema = z.object({
     .optional(),
 });
 
-export const articleSchema = z.object({
-  headline: contentSchema,
-  follow_up_question: contentSchema,
-}).merge(sectionsSchema);
+export const articleSchema = z
+  .object({
+    headline: contentSchema,
+    follow_up_question: contentSchema,
+  })
+  .merge(sectionsSchema);
 
 export type ArticleContent = z.infer<typeof articleSchema>;
 
@@ -110,7 +112,7 @@ export const plannerSchema = z.object({
         "verdict_and_early_impression",
         "future_outlook",
         "fun_bits",
-      ])
+      ]),
     )
     .min(1)
     .max(3),
