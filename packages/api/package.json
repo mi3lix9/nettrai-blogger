@@ -18,12 +18,18 @@
     "hono": "catalog:",
     "dotenv": "catalog:",
     "zod": "catalog:",
+    "@ai-sdk/openai": "^3.0.2",
+    "ai": "^6.0.5",
+    "cheerio": "^1.0.0",
+    "turndown": "^7.2.0",
+    "rss-parser": "^3.13.0",
     "@nettrai-blogger/env": "workspace:*",
     "@nettrai-blogger/auth": "workspace:*",
     "@nettrai-blogger/db": "workspace:*"
   },
   "devDependencies": {
     "typescript": "^5",
-    "@nettrai-blogger/config": "workspace:*"
+    "@nettrai-blogger/config": "workspace:*",
+    "@types/turndown": "^5.0.5"
   }
 }
