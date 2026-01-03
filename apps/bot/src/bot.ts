@@ -19,20 +19,35 @@ bot.command("start", async (ctx) => {
   );
 });
 
-bot.on("message:text", async (ctx) => {
-  const message = ctx.message.text;
+bot
+  .filter((ctx) => !!ctx.message?.message_thread_id)
+  .on("message:text", async (ctx) => {
+    const message = ctx.message.text;
 
-  // const {textStream} = streamText({
-  //   model: openai("gpt-4o-mini"),
-  //   messages: [{ role: "user", content: message }],
-  // })
+    // const {textStream} = streamText({
+    //   model: openai("gpt-4o-mini"),
+    //   messages: [{ role: "user", content: message }],
+    // })
 
-  const { textStream } = await mastra
-    .getAgent("chatAgent")
-    .stream([{ role: "user", content: message }]);
+    mastra.getMemory("main").updateWorkingMemory({
+      threadId: ctx.message.message_thread_id!.toString(),
+      resourceId: ctx.from.id.toString(),
+      workingMemory:
+        `# User Info \n` +
+        `Name: ${ctx.from.first_name} ${ctx.from.last_name ?? ""} \n` +
+        `Username: ${ctx.from.username ?? ""} \n` +
+        `Language: ${ctx.from.language_code} \n`,
+    });
 
-  await ctx.replyWithStream(textStream);
-});
+    const { textStream } = await mastra.getAgent("chatAgent").stream(message, {
+      memory: {
+        thread: ctx.message.message_thread_id!.toString(),
+        resource: ctx.from.id.toString(),
+      },
+    });
+
+    await ctx.replyWithStream(textStream);
+  });
 
 bot.on("::text_link", async (ctx) => {
   const url = ctx.message?.text;
